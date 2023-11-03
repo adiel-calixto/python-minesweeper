@@ -47,7 +47,7 @@ class MineSweeper(tk.Tk):
 
         for col in self.blocks:
             for btn in col:
-                btn["text"] = ""
+                btn.configure(text="", state="normal")
 
     def draw_blocks(self):
         for i in range(self.size):
@@ -141,7 +141,7 @@ class MineSweeper(tk.Tk):
             self.flags.remove([row, col])
 
             event.widget.configure(text="")
-            event.widget["state"] = "active"
+            event.widget["state"] = "normal"
         else:
             if len(self.flags) < self.num_mines:
                 self.flags.append([row, col])
