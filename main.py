@@ -191,4 +191,3 @@ class MineSweeper(tk.Tk):
 if __name__ == "__main__":
     game = MineSweeper()
     game.mainloop()
-    game.mainloop()
