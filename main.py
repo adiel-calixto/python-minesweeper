@@ -15,7 +15,7 @@ class MineSweeper(tk.Tk):
         self.flags = []
 
         self.title("MineSweeper")
-        self.geometry("320x400+100+100")
+        self.geometry("450x500+100+100")
         self.resizable(False, False)
 
         self.columnconfigure(tuple(range(self.size)), weight=1)
@@ -53,7 +53,8 @@ class MineSweeper(tk.Tk):
         for i in range(self.size):
             self.blocks.append([])
             for j in range(self.size):
-                self.blocks[i].append(tk.Button(self))
+                self.blocks[i].append(
+                    tk.Button(self, disabledforeground="black"))
 
                 self.blocks[i][j].bind(
                     "<Button-3>",
