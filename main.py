@@ -70,19 +70,23 @@ class MineSweeper(tk.Tk):
 
                 self.blocks[i][j].grid(column=j, row=i + 1, sticky=tk.NSEW)
 
-    def open_block_neighbours(self, row, col, distance=0):
+    def open_block_neighbours(self, row, col):
         global vis
 
-        if ([row, col] in vis) or distance > 1:
-            return
-
-        if self.values[row][col] == -1 or ([row, col] in self.flags):
+        if (
+            ([row, col] in vis)
+            or self.values[row][col] == -1
+            or ([row, col] in self.flags)
+        ):
             return
 
         vis.append([row, col])
 
         self.blocks[row][col]["text"] = self.values[row][col]
         self.blocks[row][col]["state"] = "disabled"
+
+        if self.values[row][col] != 0:
+            return
 
         for r in range(row - 1, row + 2):
             for c in range(col - 1, col + 2):
@@ -93,9 +97,7 @@ class MineSweeper(tk.Tk):
                 if r == row and c == col:
                     continue
 
-                d = distance + 1 if self.values[r][c] != 0 else 0
-
-                self.open_block_neighbours(r, c, d)
+                self.open_block_neighbours(r, c)
 
     def update_text(self):
         empty_blocks = 0
@@ -188,4 +190,5 @@ class MineSweeper(tk.Tk):
 
 if __name__ == "__main__":
     game = MineSweeper()
+    game.mainloop()
     game.mainloop()
